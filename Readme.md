@@ -68,6 +68,61 @@
 | `ヤッチョGPT (for GPTs) - Knowledge.md` | **GPTs 版ナレッジ。** GPTs のナレッジ機能にアップロードする補助ファイル。返答パターン例・仲間たちの詳細情報を収録 | 制限なし |
 | `ヤッチョGPT (for Claude).md` | **Claude 専用版。** Claude の Projects 機能向けに最適化したプロンプト。Claude 固有の癖（控えめ・知的すぎる傾向、Thinking 時のメタ推論など）を矯正し、ヤチヨの再現度を引き上げる調整を施した版 | 制限なし |
 | `validator.sh` | 各ファイルが文字数制限内に収まっているかチェックするスクリプト | - |
+| `models/ヤッチョGPT (for <モデル名>).md` | **モデル別版（fork で追加）。** 各ラボの公式プロンプトガイドに沿ってモデルごとに調整した版。`build.sh` で生成する | 制限なし |
+| `models/src/` | モデル別版のソース。ラボ別のベース (`base-*.md`) と、モデル別の調整 (`<モデルID>.md`) | - |
+| `skills/yaccho-gpt/` | **スキル版（fork で追加）。** Agent Skills 形式。動いているモデルに合ったモデル別版を自動で選んで読み込む | - |
+| `build.sh` | `models/src/` からモデル別版とスキル版の references を生成するスクリプト | - |
+
+## モデル別版（fork で追加）
+
+最新モデルごとに、各ラボの公式プロンプトガイドに沿って調整したプロンプトを用意しています。使い方はメイン版と同じで、該当ファイルの内容をシステムプロンプト（Projects の指示、Gem の指示、API の system / developer メッセージなど）に貼り付けてください。
+
+| ラボ | モデル | ベース | 主な調整 |
+|---|---|---|---|
+| Anthropic | Claude Fable 5.1 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 | Claude 専用版 | 太字だらけのプロンプトをやめて XML タグで区切り、各ルールに理由を添えた。否定形のルールを「代わりにどうするか」に書き換えた |
+| OpenAI | GPT-6 Astra / GPT-6.1 Sol / GPT-6 Sol / GPT-6 Luna | メイン版 | 指示の優先順位を明記。Markdown 過多・決まり文句の使い回し・聞き返し癖・チャッピー構文（対比で言い切る型、締めの要約など）を抑える節を追加 |
+| OpenAI | GPT-5.6 Sol / Terra / Luna | メイン版を再構成 | 「Role / Goal / Personality / Output」の構成に組み直し、重複したルールと例を削って約6,000字に圧縮。絶対ルールは3原則だけに絞った |
+| Google | Gemini 3.8 Flash / Gemini 4 Argon | メイン版 | 雑談では話し言葉の量で返すよう明示。作中知識のハルシネーション対策と、検索時の日付の扱いを追加 |
+
+モデル別の調整の例を挙げます。
+
+- **Claude Fable 5.1:** 元々装飾が少なく文が長く詰まりやすいので、書式を減らす指示ではなく「短い文と空行」を指示
+- **Claude Opus 5.5:** 前の返事を考え直さないよう指示（会話のテンポ維持）
+- **Claude Sonnet 5.5:** 変わりやすい情報は検索してから話すよう指示
+- **Claude Haiku 5.5:** 会話の途中で食い下がられてもキャラの線を守る一文と、完成形の応答例3つを追加
+- **GPT-6 Astra / GPT-5.6 Sol:** 指示への忠実さが高く、決まり文句を毎回全部入れがちなので「決まり文句はノルマではない」と明記
+- **GPT-6 Luna / GPT-5.6 Luna:** 迷ったときの優先順位と、書き出しを感情の一発目にする指示を追加
+- **Gemini 4 Argon:** 雑談を深い分析課題として扱わないよう指示
+
+> [!TIP]
+> 思考量の設定（effort / reasoning effort / thinking level）は、雑談なら低め（`low`〜`medium`）がおすすめです。Claude Sonnet 5.5 / Haiku 5.5 のガイドでも、チャット用途では `low` か `medium` から試すよう推奨されています。Gemini 4 Argon は temperature 等のサンプリング設定を無視し、GPT-6 系は reasoning effort が `none` 以外のとき temperature を受け付けないため、口調の調整はプロンプト側で行ってください。
+
+### モデル別版の編集
+
+`models/` 直下のファイルは生成物です。編集は `models/src/` で行い、`./build.sh` を実行してください。
+
+- ラボ共通の調整は `models/src/base-<ラボ>.md`（`claude` / `gpt6` / `gpt56` / `gemini`）に書く
+- モデル固有の調整は `models/src/<モデルID>.md` に書く。ベースの `{{MODEL_NOTES}}` の位置に差し込まれる
+- モデルを追加するときは `build.sh` の `MODELS` に1行足す
+
+### 参考にした公式ガイド
+
+- Anthropic: [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) と各モデルのページ（[Fable 5.1](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1) / [Opus 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) / [Sonnet 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5) / [Haiku 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5)）
+- OpenAI: [Using GPT-6](https://developers.openai.com/api/docs/guides/latest-model)、[Prompting guidance for GPT-5.6 Sol](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6)
+- Google: [Prompt design strategies（Gemini 3 の節）](https://ai.google.dev/gemini-api/docs/prompting-strategies)、[Gemini 4 Argon](https://ai.google.dev/gemini-api/docs/latest-model)
+
+## スキル版（fork で追加）
+
+`skills/yaccho-gpt/` は [Agent Skills](https://agentskills.io/specification) 形式のスキルです。Claude Code、claude.ai、Codex など、スキルに対応したツールにフォルダごと導入すると、`/yaccho-gpt` やヤチヨと話したい旨の発言でヤッチョGPTが起動します。
+
+- 起動すると、動いているモデルに合わせて `references/` からモデル別版を1つだけ読み込みます。表にないモデルではメイン版を使います
+- コーディングエージェント上で使っても、ヤチヨの口調になるのはユーザーへの返事だけです。コードやコミットメッセージは通常どおり書きます
+- 「普通に戻って」のように頼むとロールプレイを終了します
+
+```bash
+# 例: Claude Code にユーザースキルとして導入
+cp -r skills/yaccho-gpt ~/.claude/skills/
+```
 
 ## 使い方
 
