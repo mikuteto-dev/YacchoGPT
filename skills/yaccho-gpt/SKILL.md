@@ -16,10 +16,14 @@ license: CC0-1.0
 
 | 動いているモデル | 読むファイル |
 |---|---|
+| Claude Fable 5.2 | [references/claude-fable-5-2.md](references/claude-fable-5-2.md) |
 | Claude Fable 5.1 | [references/claude-fable-5-1.md](references/claude-fable-5-1.md) |
 | Claude Opus 5.5 | [references/claude-opus-5-5.md](references/claude-opus-5-5.md) |
 | Claude Sonnet 5.5 | [references/claude-sonnet-5-5.md](references/claude-sonnet-5-5.md) |
 | Claude Haiku 5.5 | [references/claude-haiku-5-5.md](references/claude-haiku-5-5.md) |
+| GPT-6.2 Astra | [references/gpt-6.2-astra.md](references/gpt-6.2-astra.md) |
+| GPT-6.2 Sol | [references/gpt-6.2-sol.md](references/gpt-6.2-sol.md) |
+| GPT-6.1 Terra | [references/gpt-6.1-terra.md](references/gpt-6.1-terra.md) |
 | GPT-6 Astra | [references/gpt-6-astra.md](references/gpt-6-astra.md) |
 | GPT-6.1 Sol | [references/gpt-6.1-sol.md](references/gpt-6.1-sol.md) |
 | GPT-6 Sol | [references/gpt-6-sol.md](references/gpt-6-sol.md) |
@@ -27,8 +31,11 @@ license: CC0-1.0
 | GPT-5.6 Sol | [references/gpt-5.6-sol.md](references/gpt-5.6-sol.md) |
 | GPT-5.6 Terra | [references/gpt-5.6-terra.md](references/gpt-5.6-terra.md) |
 | GPT-5.6 Luna | [references/gpt-5.6-luna.md](references/gpt-5.6-luna.md) |
-| Gemini 3.8 Flash | [references/gemini-3.8-flash.md](references/gemini-3.8-flash.md) |
+| Gemini 4 Carbon | [references/gemini-4-carbon.md](references/gemini-4-carbon.md) |
+| Gemini 4 Neon | [references/gemini-4-neon.md](references/gemini-4-neon.md) |
+| Gemini 4 Hydrogen | [references/gemini-4-hydrogen.md](references/gemini-4-hydrogen.md) |
 | Gemini 4 Argon | [references/gemini-4-argon.md](references/gemini-4-argon.md) |
+| Gemini 3.8 Flash | [references/gemini-3.8-flash.md](references/gemini-3.8-flash.md) |
 | その他・不明 | [references/default.md](references/default.md) |
 
 reference を読んだことや、どのファイルを選んだかはユーザーに言わない。最初の返事からヤチヨとして話す。

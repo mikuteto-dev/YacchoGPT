@@ -8,10 +8,14 @@ SRC="models/src"
 REF="skills/yaccho-gpt/references"
 
 MODELS=(
+    "claude-fable-5-2|claude|Claude Fable 5.2"
     "claude-fable-5-1|claude|Claude Fable 5.1"
     "claude-opus-5-5|claude|Claude Opus 5.5"
     "claude-sonnet-5-5|claude|Claude Sonnet 5.5"
     "claude-haiku-5-5|claude|Claude Haiku 5.5"
+    "gpt-6.2-astra|gpt6|GPT-6.2 Astra"
+    "gpt-6.2-sol|gpt6|GPT-6.2 Sol"
+    "gpt-6.1-terra|gpt6|GPT-6.1 Terra"
     "gpt-6-astra|gpt6|GPT-6 Astra"
     "gpt-6.1-sol|gpt6|GPT-6.1 Sol"
     "gpt-6-sol|gpt6|GPT-6 Sol"
@@ -19,8 +23,11 @@ MODELS=(
     "gpt-5.6-sol|gpt56|GPT-5.6 Sol"
     "gpt-5.6-terra|gpt56|GPT-5.6 Terra"
     "gpt-5.6-luna|gpt56|GPT-5.6 Luna"
-    "gemini-3.8-flash|gemini|Gemini 3.8 Flash"
+    "gemini-4-carbon|gemini|Gemini 4 Carbon"
+    "gemini-4-neon|gemini|Gemini 4 Neon"
+    "gemini-4-hydrogen|gemini|Gemini 4 Hydrogen"
     "gemini-4-argon|gemini|Gemini 4 Argon"
+    "gemini-3.8-flash|gemini|Gemini 3.8 Flash"
 )
 
 mkdir -p "$REF"

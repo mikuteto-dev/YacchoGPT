@@ -68,25 +68,29 @@
 
 | ラボ | モデル | ベース | 主な調整 |
 |---|---|---|---|
-| Anthropic | Claude Fable 5.1 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 | Claude 専用版 | 太字の多用を排して XML タグで構造化し、各ルールに理由を明記。否定形の指示を代替行動の指定に変更 |
-| OpenAI | GPT-6 Astra / GPT-6.1 Sol / GPT-6 Sol / GPT-6 Luna | メイン版 | 指示の優先順位を定義（書式の指定には応じるがキャラクターは維持）。過度な Markdown、決まり文句の多用、聞き返し癖、典型的な定型構文（対比表現や末尾の要約など）を抑制 |
+| Anthropic | Claude Fable 5.2 / Fable 5.1 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 | Claude 専用版 | 太字の多用を排して XML タグで構造化し、各ルールに理由を明記。否定形の指示を代替行動の指定に変更 |
+| OpenAI | GPT-6.2 Astra / GPT-6.2 Sol / GPT-6.1 Terra / GPT-6 Astra / GPT-6.1 Sol / GPT-6 Sol / GPT-6 Luna | メイン版 | 指示の優先順位を定義（書式の指定には応じるがキャラクターは維持）。過度な Markdown、決まり文句の多用、聞き返し癖、典型的な定型構文（対比表現や末尾の要約など）を抑制 |
 | OpenAI | GPT-5.6 Sol / Terra / Luna | メイン版を再構成 | 「Role / Goal / Personality / Output」の構成に再編し、冗長なルールを整理して GPTs の 7,200 字制限内に圧縮。基本原則を3点に集約 |
-| Google | Gemini 3.8 Flash / Gemini 4 Argon | メイン版 | 雑談では口頭会話に適した情報量で返すよう指定。作中設定のハルシネーション対策と、Web 検索時の日付処理を追加 |
+| Google | Gemini 4 Carbon / Neon / Hydrogen / Argon / Gemini 3.8 Flash | メイン版 | 雑談では口頭会話に適した情報量で返すよう指定。作中設定のハルシネーション対策と、Web 検索時の日付処理を追加 |
 
 全モデル共通で「断る際の挙動」を調整しています。不適切な依頼や秘密に関わる質問を拒否する際、「著作権」「ポリシー」「お答えできません」といったシステム側の定型句を避け、理由や代替案も含めてヤチヨ自身の言葉で返すよう、例文付きで指示しています。
 
 ### モデル別の主な調整例
 
+- **Claude Fable 5.2:** 文体ルールへの忠実度が高いため機械的な区切りを避け、思考の略語を持ち込まず最後まで話し切るよう指示（前の返事の再考抑制は入れない）
 - **Claude Fable 5.1:** 文が長く詰まりやすいため、書式の抑制ではなく「短文と適度な空行」を指示
 - **Claude Opus 5.5:** 会話のテンポを損なわないよう、直前の発言を過剰に再考しないよう指示
 - **Claude Sonnet 5.5:** 変動しやすい情報は Web 検索を行ってから回答するよう指示
 - **Claude Haiku 5.5:** 重ねて質問されてもキャラクターを維持する指示と、完成形の応答例（3件）を追加
+- **GPT-6.2 Astra / Sol:** デフォルトで簡潔に縮みやすいため雑談の厚みを保つ指示を追加。思考途中の略語持ち込みや確認だけの途中停止も抑制
+- **GPT-6.1 Terra:** 整ったアシスタント文体になりやすいため感情の一発目と話し言葉のリズムを維持し、画像への反応も会話調に指定
 - **GPT-6 Astra / GPT-5.6 Sol:** 指示への忠実度が高く定型句を毎回挟みがちなため、「定型句はノルマではない」と明記
 - **GPT-6 Luna / GPT-5.6 Luna:** 迷った場合の優先順位を定義し、感情の第一声を書き出しにするよう指示
-- **Gemini 4 Argon:** 雑談を過度に分析的なタスクとして処理しないよう指示
+- **Gemini 4 Carbon / Neon / Argon:** 雑談を過度に分析的なタスクとして処理しないよう指示（Carbon は確認質問の前置きや長大なレポート化を抑制、Neon は会話途中の空気変化への追従を明記）
+- **Gemini 4 Hydrogen:** 情報不足を事務的な断り文句にせずヤチヨの声で伝えるよう指定し、雑談での過思考・短文化を抑制
 
 > [!TIP]
-> 思考量（effort / reasoning effort / thinking level）の設定は、雑談用途であれば低め（`low`〜`medium`）が適しています。Claude Sonnet 5.5 / Haiku 5.5 のガイドでも、チャット用途では `low` または `medium` が推奨されています。なお、Gemini 4 Argon はサンプリングパラメータを無視し、GPT-6 系は reasoning effort が `none` 以外では temperature を受け付けないため、トーンの調整はプロンプト側で行ってください。
+> 思考量（effort / reasoning effort / thinking level）の設定は、雑談用途であれば低め（`low`〜`medium`）が適しています。Claude Fable 5.2 ではプロンプトで思考を止められないため、`effort` を `low`〜`medium` に下げて使います（Sonnet 5.5 / Haiku 5.5 でもチャット用途は `low`〜`medium` 推奨）。また、Gemini 4 系（Carbon / Neon / Hydrogen / Argon）はサンプリングパラメータを無視し、GPT-6.2 系および reasoning effort が `none` 以外の GPT-6 系は `temperature` を受け付けないため、トーンの調整はプロンプト側で行ってください。
 
 ### モデル別版のビルドと編集
 
@@ -98,9 +102,9 @@
 
 ### 参考にした公式ガイド
 
-- Anthropic: [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)、各モデル向けガイド（[Fable 5.1](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1) / [Opus 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) / [Sonnet 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5) / [Haiku 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5)）
-- OpenAI: [Using GPT-6](https://developers.openai.com/api/docs/guides/latest-model)、[Prompting guidance for GPT-5.6 Sol](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6)
-- Google: [Prompt design strategies（Gemini 3 の節）](https://ai.google.dev/gemini-api/docs/prompting-strategies)、[Gemini 4 Argon](https://ai.google.dev/gemini-api/docs/latest-model)
+- Anthropic: [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)、各モデル向けガイド（[Fable 5.2](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2) / [Fable 5.1](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1) / [Opus 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) / [Sonnet 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5) / [Haiku 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5)）
+- OpenAI: [Using GPT-6.2](https://developers.openai.com/api/docs/guides/latest-model)、[Using GPT-6（GPT-6.1 Terra を含む）](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra)、[Prompting guidance for GPT-5.6 Sol](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6)
+- Google: [Prompt design strategies（Gemini 3 の節）](https://ai.google.dev/gemini-api/docs/prompting-strategies)、[Latest Gemini models（Gemini 4 Carbon / Neon / Hydrogen）](https://aistudio.google.com/docs/latest-model)、[Choosing a model](https://aistudio.google.com/docs/choosing-a-model)
 
 ## スキル版（fork で追加）
 
@@ -151,7 +155,7 @@ cp -r skills/yaccho-gpt ~/.claude/skills/
 Claude の Projects 機能で新規プロジェクトを作成し、**`ヤッチョGPT (for Claude).md`** の内容をシステムプロンプトに貼り付けてください。
 
 > [!TIP]
-> Claude 専用版 (`ヤッチョGPT (for Claude).md`) は、Claude 固有の傾向を補正したプロンプトです。メイン版 (`ヤッチョGPT.md`) でも動作しますが、専用版を使用することで再現度が向上します。推奨モデルは **Claude Opus 4.6** です（語彙の豊かさや連想力が高く出ます）。Claude Fable 5.1 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 を使う場合は、`models/` のモデル別版を使ってください。
+> Claude 専用版 (`ヤッチョGPT (for Claude).md`) は、Claude 固有の傾向を補正したプロンプトです。メイン版 (`ヤッチョGPT.md`) でも動作しますが、専用版を使用することで再現度が向上します。推奨モデルは **Claude Opus 4.6** です（語彙の豊かさや連想力が高く出ます）。Claude Fable 5.2 / Fable 5.1 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 を使う場合は、`models/` のモデル別版を使ってください。
 
 ### Grok (Projects)
 
