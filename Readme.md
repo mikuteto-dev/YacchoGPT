@@ -13,14 +13,15 @@
 
 <img width="57%" alt="Image" src="https://github.com/user-attachments/assets/c8db2be2-aae1-4abb-b776-340e444135a0" /><img width="42.5%" alt="Image" src="https://github.com/user-attachments/assets/6699d178-4a49-4d01-8e12-92fdc6492b25" /><br>
 
-公開済みの GPTs / Gem から、すぐにヤッチョGPTと会話できます。好みに合わせてプロンプトを調整し、自分用に作成することも可能です。
+公開済みの GPTs / Gemini スキルから、すぐにヤッチョGPTと会話できます。好みに合わせてプロンプトを調整し、自分用に作成することも可能です。
 
 > [!NOTE]  
-> 公開中の GPTs / Gem は元リポジトリの作者によるもので、元リポジトリのプロンプトと同じ内容です。
+> 公開中の GPTs / Gemini スキルは元リポジトリの作者によるもので、元リポジトリのプロンプトと同じ内容です。
 
 | プラットフォーム | リンク | 備考 |
 |---|---|---|
-| **Gemini (Gem)** | [ヤッチョGPT (Gemini Gem)](https://gemini.google.com/gem/1CR1IL2aLDaHl9Ky2j9BynjQdvaJNCKbC?usp=sharing) | **おすすめ** / 最も自然なキャラクター再現度。無料版でも利用可能 |
+| **Gemini (スキル: 2026/11/27 追加)** | [ヤッチョGPT (Gemini スキル)](https://gemini.google.com/customize/skills/d/1CR1IL2aLDaHl9Ky2j9BynjQdvaJNCKbC?usp=sharing) | **おすすめ** / 最も自然なキャラクター再現度。無料版でも利用可能 |
+| ~~**Gemini (Gem: 2026/11/24 廃止)**~~ | ~~[ヤッチョGPT (Gemini Gem)](https://gemini.google.com/gem/1CR1IL2aLDaHl9Ky2j9BynjQdvaJNCKbC?usp=sharing)~~ | ~~**おすすめ** / 最も自然なキャラクター再現度。無料版でも利用可能~~ |
 | **ChatGPT (GPTs)** | [ヤッチョGPT (ChatGPT GPTs)](https://chatgpt.com/g/g-69e943284ec48191a9f66802ba741002-yatutiyogpt) | 無料版でも利用可能 (GPTs の作成には ChatGPT Plus 以上が必要) |
 
 ## 概要
@@ -51,7 +52,7 @@
 
 | ファイル | 用途 | 文字数制限 |
 |---|---|---|
-| `ヤッチョGPT.md` | **メイン版。** Gemini Gem、Claude Projects、Grok Projects など向け。返答例や設定など全情報を1ファイルに収録 | 12,000字 |
+| `ヤッチョGPT.md` | **メイン版。** Gemini スキル、Claude Projects、Grok Projects など向け。返答例や設定など全情報を1ファイルに収録 | 12,000字 |
 | `ヤッチョGPT (for GPTs).md` | **GPTs 版コア。** ChatGPT の 8,000 字制限に合わせて圧縮したシステムプロンプト。返答例などはナレッジへ分離 | 7,200字 |
 | `ヤッチョGPT (for GPTs) - Knowledge.md` | **GPTs 版ナレッジ。** GPTs にアップロードする補助ファイル。返答例や仲間たちの詳細情報を収録 | 制限なし |
 | `ヤッチョGPT (for Claude).md` | **Claude 専用版。** Claude 固有の傾向（控えめすぎる返答、思考プロセスのメタ推論など）を補正した Projects 向けプロンプト | 制限なし |
@@ -63,7 +64,7 @@
 
 ## モデル別版（fork で追加）
 
-各ラボの公式プロンプトガイドに沿って、モデルごとに最適化したプロンプトを用意しています。使い方はメイン版と同様で、各ツールのシステムプロンプト（Projects、Gem、API の system / developer メッセージなど）に貼り付けて使用します。
+各ラボの公式プロンプトガイドに沿って、モデルごとに最適化したプロンプトを用意しています。使い方はメイン版と同様で、各ツールのシステムプロンプト（Projects、Gemini スキル、API の system / developer メッセージなど）に貼り付けて使用します。
 
 | ラボ | モデル | ベース | 主な調整 |
 |---|---|---|---|
@@ -116,20 +117,16 @@ cp -r skills/yaccho-gpt ~/.claude/skills/
 
 ## 使い方
 
-### Gemini (Gem) ⭐️おすすめ
+### Gemini (スキル) ⭐️おすすめ
 
 <img width="65%" alt="Image" src="https://github.com/user-attachments/assets/c8db2be2-aae1-4abb-b776-340e444135a0" /><br>
 
-[ヤッチョGPT (Gemini Gem)](https://gemini.google.com/gem/1CR1IL2aLDaHl9Ky2j9BynjQdvaJNCKbC?usp=sharing) から、すぐに Gemini 上で会話できます。最もキャラクター再現度が高く、手軽に利用できる環境です。
+[ヤッチョGPT (Gemini スキル)](https://gemini.google.com/customize/skills/d/1CR1IL2aLDaHl9Ky2j9BynjQdvaJNCKbC?usp=sharing) から、すぐに Gemini 上で会話できます。最もキャラクター再現度が高く、手軽に利用できる環境です（Gemini Gem は 2026/11/24 に廃止され、Gemini スキルへ移行しました）。
 
 > [!TIP]  
 > <img width="100%" alt="Image" src="https://github.com/user-attachments/assets/47f3f8bc-3112-429e-b59e-84917f966abe" /><br><br>
-> 自分好みに調整したい場合は、Gem を新規作成し、`ヤッチョGPT.md` の内容をシステムプロンプトに貼り付けてください。  
-> Gem はプロンプトの文字数上限が非常に緩く、無料プランでも作成・公開できます。
-
-> [!TIP]  
-> <img width="50%" alt="Image" src="https://github.com/user-attachments/assets/d91aac66-9604-44f8-b1e0-d8e042ba3cd7" /><br><br>
-> PC ブラウザであれば、Chrome 拡張機能 [GemAvatar](https://chromewebstore.google.com/detail/gemavatar/jpilaleommoebpebjbafdiflmfphkmbc) を導入することで、Gem にアイコン画像を設定・表示できます。
+> 自分好みに調整したい場合は、Gemini スキルを新規作成し、`ヤッチョGPT.md` の内容をシステムプロンプトに貼り付けてください。  
+> Gemini スキルはプロンプトの文字数上限が非常に緩く、無料プランでも作成・公開できます。
 
 ### ChatGPT (GPTs)
 
@@ -144,7 +141,8 @@ cp -r skills/yaccho-gpt ~/.claude/skills/
 
 > [!IMPORTANT]  
 > - **GPTs の作成には ChatGPT Plus 以上の契約が必要です**（公開済み GPTs の利用だけであれば無料版でも可能です）。
-> - **公開審査への配慮**: GPTs をリンク共有で一般公開する際、長大なプロンプトは自動審査で弾かれることがあります。そのため、最大8,000字の制限に対して7,200字に圧縮し、返答例などの詳細情報をナレッジファイルに分離しています（非公開で自分のみが使う場合はこの制限を気にする必要はありません）。
+> - **公開審査への配慮**: Gemini スキルとは異なり、GPTs をリンク共有で一般公開する際、長大なプロンプトは自動審査で弾かれることがあります。そのため、最大8,000字の制限に対して7,200字に圧縮し、返答例などの詳細情報をナレッジファイルに分離しています（非公開で自分のみが使う場合はこの制限を気にする必要はありません）。
+> - プロンプトを自由にカスタマイズしたい場合は、文字数制限が緩く再現度も高い Gemini スキルをおすすめします。
 
 ### Claude (Projects)
 
@@ -170,11 +168,14 @@ Grok の Projects 機能で新規プロジェクトを作成し、`ヤッチョG
 
 プロジェクト機能や GPTs 相当の機能がないプラットフォームでは、チャットの最初のメッセージまたはシステムプロンプトに `ヤッチョGPT.md` の内容を入力してください。
 
-## LLM プラットフォーム別の特徴
+## LLM プラットフォーム別の特徴 (2026年4月時点)
+
+> [!WARNING]
+> 以下は2026年4月時点の情報です。LLM の性能は日々進化しており、最新モデルでは異なる傾向を示す可能性があります。実際にいろいろ試してみて、自分のスタイルに合うものを選ぶのがおすすめです。
 
 同一のプロンプトを適用しても、ベースとなる LLM 固有の傾向や思考特性によって返答のトーンが異なります。用途や好みに応じてプラットフォームを選択してください。
 
-### Gemini (Gem)
+### Gemini
 
 - **キャラクター再現度が最も高い**: テンションの高さ、自然な発想、繊細なニュアンスなど、最もヤチヨらしさが際立ちます。
 - **指示への追従性が高い**: ロールプレイの維持力が高く、無料版 (Gemini Flash) でも十分な再現度を発揮します。
